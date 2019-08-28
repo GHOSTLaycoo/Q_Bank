@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/main.css"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/basevalue.js"></script>
+<script type="text/javascript" src="js/cookie_util.js"></script>
+<script type="text/javascript" src="js/login.js" charset="utf-8"></script>
+<script type="text/javascript">
+		$(function(){
+			//重置placeholder
+			$("input").focus(function(){
+				$("#usernum").attr("placeholder","学号");
+				$("#password").attr("placeholder","密码");
+				$("#username").attr("placeholder","姓名");
+	  		});
+			//注册
+			$("#submit").click(registUser);
+		});
+		//隐藏
+		function retesc(){
+ 			document.getElementById("regedit").style.display="none";
+ 		}
+</script>
+</head>
+<body>
+<div class="dowebok">
+
+         <div class="logo"></div>
+
+         <div class="form-item">
+
+             <input id="username" name="username" type="text" autocomplete="off" placeholder="姓名">
+
+         </div>
+		 
+		 <div class="form-item">
+
+             <input id="usernum" name="usernum" type="text" autocomplete="off" placeholder="学号">
+
+         </div>
+
+         <div class="form-item">
+
+             <input id="password" name="password" type="password" autocomplete="off" placeholder="密码">
+
+         </div>
+         <div >
+		 
+		    <div class="form-item2_1"><button id="submit">注 册</button></div>
+			
+			<div class="form-item2_2"><button  onclick="javascript:window.location.href='login.html'" id="submit">返 回</button></div>
+
+		 </div>
+     </div>
+
+	 <div  class="reg_main" id="regedit" >
+		<div class="reg_background">
+			<div class="reg_a">
+				<!-- 框内内容 -->
+				<div class="reg_display_1">注册成功！</div>
+				<div class="reg_display_2">确认返回登录，取消继续注册</div>
+			</div>
+			<div style="height: 39px;">
+				<div class="reg_yes" onclick="javascript:window.location.href='login.html'" >确认</div>
+				<div class="reg_no" onclick="retesc()" >取消</div>
+			</div>
+		</div>
+	</div> 
+</body>
+</html>

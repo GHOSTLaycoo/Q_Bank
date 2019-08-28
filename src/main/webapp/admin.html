@@ -1,0 +1,360 @@
+<html>  
+  <head>
+  <meta charset="utf-8"> 
+    <title>管理员界面</title>  
+    <link rel="stylesheet" type="text/css" href="css/menu.css">  
+	<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.css">       
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/basevalue.js"></script>
+	<script type="text/javascript" src="js/cookie_util.js"></script>  
+    <script type="text/javascript" src="js/Admin.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/util.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/meun.js" charset="utf-8"></script>
+	<script type="text/javascript">
+			
+	    var NowPwd="";
+		$(function(){
+		loadName();
+	 //单击菜单三角形旋转和下拉框折叠
+		$("#menu_ul div").click(OutLogin);
+	 //记忆上一次保留子菜单
+		$("#menu_ul ul").on("click","li",Hisz);
+		$("#menu_ul ul").on("click","li",Cli);
+		//显示上传题目
+		$("#Q_ul").on("click","li",showQuestion_ul);
+		$("#Question_ul").on("click","#sudmit",uploadQ)
+		//账号管理功能
+		//显示账号
+		$("#account_li").click(showAccount);
+		//改变账号显示状态
+		$("#modb").click(changeShow);
+		//修改密码
+		$("#saveAcount").click(updataPwd);
+		//显示查询成绩
+		$("#number_li").click(findAllReWindow);
+		//查询所有成绩
+		$("#displaystu").click(findAllRe);
+		//显示介绍
+		$("#Introduction").click(showIntroduction);
+		//显示鸣谢
+		$("#Thanks").click(showThanks);
+		//显示时间
+		showTime();
+	});	 
+ 
+		
+ 		var handler = window.setInterval('showTime()',10000);//时间刷新
+
+ 
+document.addEventListener('LiveReloadDisconnect', function() { 
+setTimeout(function() { 
+window.location.reload(); 
+}, 500);
+
+})
+  </script>	
+  <style>
+  
+  #menu_ul{position:absolute;top:125px;}
+  
+  body{margin: 0px; padding: 0px; background:url(img/User_background.jpg) no-repeat 0 0; width:90em;height:45em;background-size:cover;}
+  
+  ul {margin: 0px; padding: 0px;}
+  #menu_ul li:hover {font-weight:bold;}
+  li a {font-size: 28px}
+  ul a{color:rgb(85,27,137);padding-left:15px;}
+  ul li a {color:rgb(138,1,0);padding-left:40px;}
+  ul li{list-style: none;}
+
+  .a5_5 a{font-size: 18px;color:black;font-family:Simsun;}
+ 
+ 
+ 
+ .a1_1 {position:relative; left: 50px; top:30px; background-color:#fff; width:250px;  border-top-left-radius:30px;          border-top-right-radius:30px;    border:2px solid rgba(50,61,30,1);}
+ .a1_2 {position:relative; left: 50px; top:30px; background-color:#fff; width:250px;  border-left: 2px solid rgba(50,61,30,1); border-right: 2px solid rgba(50,61,30,1);}
+ .a1_3 {position:relative; left: 50px; top:30px; background-color:#fff; width:250px;  border-bottom-left-radius:30px;       border-bottom-right-radius:30px; border:2px solid rgba(50,61,30,1);}
+
+ .a2_1 {position:relative; left: 10px; border-bottom: 2px solid rgba(85,27,137,0.4); width:230px; list-style: none; }
+
+ .a3_1 {position:relative; left: 10px; width:230px; list-style: none; margin-bottom: 8px;}
+ .a3_2 {position:relative; left: 10px; width:230px; list-style: none;}
+ 
+ .a4_1{position:relative; margin: 0px;width:1549px;height:110px;background-color:rgba(50,61,30,0.7);}
+ .a4_2{float:right;width:100px; height:100px; background:url(img/Admin.png);background-size: cover;position:relative; top:5px;right:10px;}
+ .a4_3{float:left;width:350px; height:110px; background:url(img/Admin_ui.png);background-size: cover;position:relative;}
+ .a4_4{position:absolute;width:230px;height:110px;right:130px;}
+ 
+  #menuz{position:relative ;width:1000px;height560px;left:430px;top:45px;}
+ 
+ .a5_1{position:absolute ;width:1000px; background-color:rgba(50,61,30,0.7);height:100px; position: relative; border-left:2px solid rgba(50,61,30,1);border-right:2px solid rgba(50,61,30,1);border-top:2px solid rgba(50,61,30,1);border-top-left-radius:30px;border-top-right-radius:30px;    }
+ .a5_2{position:absolute ;width:1000px;height:440px; background-color:rgba(50,61,30,0.7);position: relative;  border-left:2px solid rgba(50,61,30,1); border-right:2px solid rgba(50,61,30,1); border-top:2px solid rgba(50,61,30,0.5); overflow-y:auto;}
+ .a5_3{position:absolute ;width:1000px; background-color:rgba(50,61,30,0.7);height:20px; position: relative; border-left:2px solid rgba(50,61,30,1);border-right:2px solid rgba(50,61,30,1);border-bottom:2px solid rgba(50,61,30,1);border-bottom-left-radius:30px;border-bottom-right-radius:30px;}
+ 
+ .a5_4{float:right;width:900px; height:400px; position: relative; border:2px solid rgba(50,61,30,1);  left:-20px; margin-left:20px;  margin-top:20px;   margin-right:20px;  background-color:#fff; }
+ 
+ .a5_4_T{float:right;width:900px; height:100px; position: relative; border-left:2px solid rgba(50,61,30,1);  border-bottom:2px solid rgba(50,61,30,1);   border-right:2px solid rgba(50,61,30,1);   left:-20px; margin-left:20px;  margin-top:-2px;   margin-right:20px;  background-color:#fff; text-align:center;line-height: 100px;}
+ .a5_4_B{position: relative; right:30px;}
+ 
+ .a5_5{float:right;width:900px; height:700px; position: relative; border:2px solid rgba(50,61,30,1);  left:-20px; margin-left:20px;  margin-top:20px;   margin-right:20px; background-image:url(img/User_person.jpg) ! important; background-size: cover ! important; font-family:Simsun;}
+ 
+ .a5_4 input[type=radio]{width: 20px;height: 20px; }
+ .a5_4 input:checked + span {color: red;}
+ .a5_4_T button{width:80px; height:50px;} 
+   
+
+ 
+ .TreeArrowBottom {position:absolute;  right:10px; top:10px; border-right: 8px solid transparent;border-left: 8px solid transparent;border-top: 12px solid darkgray;display: block;transition: all 0.5s ease;-webkit-transition: all 0.5s ease;-moz-transition: all 0.5s ease;-ms-transition: all 0.5s ease;-o-transition: all 0.5s ease; }
+ .rotateT {-webkit-transform: rotate(90deg);-moz-transform: rotate(90deg);-ms-transform: rotate(90deg);-o-transform: rotate(90deg);transform: rotate(90deg);}
+  h1{position: relative; right:45px;top:10px;font-size: 26px; height:75px; width:40%;float:right; margin:0px;  padding-right: 25px;   font-family:Simsun;}
+  
+  
+ .h1c{position: relative; font-size: 26px; height:40px; width:80%;margin:0px; font-family:Simsun;}
+ 
+  h3{font-size: 20px; height:125px; padding-top:40px;padding-left:100px; padding-right:100px;     font-family:Simsun; } 
+ 
+ .h3c{margin-left:-2px ;font-size: 24px; height:125px;width:104%; font-family:Simsun; }
+ 
+ 
+ .a4_4 input{background:rgba(244,247,227,0);border-style:none;font-family:Simsun;font-size: 32px;line-height: 110px;text-align:center;}
+ 
+ .butsave_P{position: relative; left:45%;width: 60px;height: 30px;}
+ 
+ .sid{border-style:none;background:rgba(244,247,227,0);font-size: 18px; width:170px;}
+ .spwd{border-style:none;background:rgba(244,247,227,0);font-size: 18px; width:80px; margin-left:35%}
+ .spwd_1{border-style:none;background:rgba(244,247,227,0);font-size: 18px; width:150px;}
+ .spwd_2{position:relative;margin-left:61%;margin-top:-22px } 
+ .spwd_3{background:rgba(255,255,255,1);border:2px solid rgba(79,144,252,1);font-size: 18px; width:150px;}
+ .spwd_4{position:relative;top:-1px; } 
+ 
+ 
+ #myTime {position:relative;top:-90px;left:100px;color: rgba(255,255,255,0.9);background-color: rgba(255,255,255,0);width: 180px;height: 120px;font-family: "agency fb";text-align: center;}          
+ #hm {position:relative;left:-20px;font-style: bold;font-size: 80px;}            
+ #other {position:relative;top:-10px;font-family: "Simsun";font-size: 25px;}
+ #Naz {width:230px; padding: 0px;}
+ 
+ #fraction_ul td #stuName {height:20px;width:72px;background:rgba(255,255,255,0);border-style:none;text-align:center;}
+ 
+ #fraction_ul td input{height:20px; width:42px;background:rgba(255,255,255,0);border-style:none;font-size: 18px;text-align:center;}
+
+ #fraction_ul option input{background:rgba(255,255,255,0);border-style:none;font-size: 18px;text-align:center;}
+ 
+ .a11_1{position:absolute; left:92px; top:60px;  height:560px;width:720px;margin:0px; border:2px solid rgba(50,61,30,1);margin: 0px; padding: 0px;}
+ .a11_2{position:absolute; height:40px;width:720px; border-bottom:2px solid rgba(50,61,30,1);background-color:rgba(50,61,30,1)}
+ 
+ .a12_1{height:30px;width:200px;font-family:"Simsun";font-size:20px;}
+ .a12_1_1{height:30px;width:90px;font-family:"Simsun";font-size:20px;}
+ .a12_1_2{height:30px;width:130px;font-family:"Simsun";font-size:20px;}
+ 
+ .a12_B{height:30px;width:50px;font-family:"Simsun";font-size:17px; position:absolute; right:15px; top:5px;}
+ </style>
+  </head>  
+    
+  <body>  
+	<div class="a4_1">
+		<div class="a4_3"></div>
+		<div class="a4_4"><input id="Naz" value="" readonly="readonly"></input></div>
+		<div class="a4_2"></div>
+		</div>
+	<div id="menuz">
+		<div class="a5_1"></div>
+		<div class="a5_2" id="mmm">
+		
+		<div id="menuz_T">
+		<!-- 建题板块 -->
+		<ul id="Question_ul" style="display:none" name="语文">	
+			<li class="a5_4">
+				<h3><textarea  id="Ctxta" class="h3c"></textarea></h3>
+						<h1><label><input name="A1" type="radio" value="B" />
+						<span>B.<input id="CansB" class="h1c" type="text" value="" /></span>
+						</label></h1>
+						
+						<h1><label><input name="A1" type="radio" value="A" />
+						<span>A.<input id="CansA" class="h1c" type="text" value="" /></span>
+						</label></h1>		
+						<br>
+						<h1><label><input name="A1" type="radio" value="D" />
+						<span>D.<input id="CansD" class="h1c"  type="text" value="" /></span>
+						</label></h1>
+						
+						<h1><label><input name="A1" type="radio" value="C" />
+						<span>C.<input id="CansC" class="h1c" type="text" value="" /></span>
+						</label></h1>
+			</li>
+			<li class="a5_4_T"><button class="a5_4_B" id="sudmit">提交</button></li>
+	    </ul>
+	    <!-- 建题板块 -->   
+	   </div>
+	   
+	   <div id="menuz_B">
+	    <!-- 个人信息板块 -->
+		<ul id="Person_ul" style="display:none" name="个人资料">	
+		<li class="a5_5" ></li>
+		</ul>
+		<!-- 个人信息板块 -->
+		
+		<!-- 账号管理板块 -->
+        <ul id="User_ul" style="display:none" name="账号管理">	
+			<li class="a5_5">
+		<div style="position: relative;top:20%">
+			<input class="spwd" value="学　　号:" readonly="readonly"/><input id="sstuid" class="sid" value="" readonly="readonly"/>
+			<i class="fa fa-eye-slash" onclick="showhide_eye()" id="eye" style="display:none;width:50px; position:absolute;right:31.5%;top:9%"></i>
+			<input id="pwdname" class="spwd" value="密　　码:" readonly="readonly"></input><input id="modp_1" class="spwd_1" readonly="readonly" type="password"></input>
+			<input id="modb"  type="button" value="修改" class="spwd_2"></input>
+			<div id="mpwd" style="display:none">
+			<input id="pwdname" class="spwd" value="新的密码:" readonly="readonly"></input><input id="modp_2" class="spwd_3" value="" type="password"></input><br>
+			<input id="pwdname" class="spwd" value="确认密码:" readonly="readonly"></input><input id="modp_3" class="spwd_3" value="" type="password"></input>
+			<input  id="saveAcount" type="button" value="保存" class="spwd_4"></input><br>
+			</div>
+		</div>
+			</li>
+	    </ul>
+	    <!-- 账号管理板块 -->
+	    
+	    <!-- 分数查询板块 --> 
+	    <ul id="fraction_ul" style="display:none" name="分数查询">	
+			<li class="a5_5">
+			<div class="a11_1">
+			<div class="a11_2">
+			<select id="stuSession" class="a12_1_1" style="position:absolute;top:5px;left:5px;">
+			<option value="em"></option>
+			<option value="19">2019级</option>
+			<option value="18">2018级</option>
+			<option value="17">2017级</option>
+			<option value="16">2016级</option>
+			</select>
+
+			<select id ="stufaculty" class="a12_1" onchange="depmx2()" style="position:absolute;top:5px;left:100px;">
+			<option value="em"></option>
+			<option value="机械工程系">机械工程系</option>
+			<option value="电气与信息工程系">电气与信息工程系</option>
+			<option value="材料科学与工程系">材料科学与工程系</option>
+			<option value="经济管理系">经济管理系</option>
+			</select >	
+			
+			<select class="a12_1" id="destuProfession" style="position:absolute;top:5px;left:305px;">
+			<option></option>
+			</select>
+			
+			<div id="stuProfession">
+
+			<select class="a12_1" id="destuProfession" style="display:block;position:absolute;top:5px;left:305px;">
+			<option></option>
+			</select>
+
+			<select class="a12_1" style="display:none;position:absolute;top:5px;left:305px;" id="jxgc">
+			<option></option>
+			<option value="机电工程">机电工程</option>
+			<option value="数字化设计与制造">数字化设计与制造</option>
+			<option value="装备制造产业">装备制造产业</option>
+			<option value="工业设计">工业设计</option>
+			</select>
+			
+			<select class="a12_1" style="display:none;position:absolute;top:5px;left:305px;" id="dqxx">
+			<option></option>
+			<option value="计算机科学与技术">计算机科学与技术</option>
+			<option value="软件工程">软件工程</option>
+			<option value="电子信息工程">电子信息工程</option>
+			<option value="自动化">自动化</option>
+			</select>
+			
+			
+			<select class="a12_1" style="display:none;position:absolute;top:5px;left:305px;"id="clkx">
+			<option></option>
+			<option value="高分子材料">高分子材料</option>
+			<option value="模具设计与制造">模具设计与制造</option>
+			<option value="材料成型及控制">材料成型及控制</option>
+			<option value="材料科学与工程">材料科学与工程</option>
+			</select>	
+			
+			<select class="a12_1" style="display:none;position:absolute;top:5px;left:305px;" id="jjgl">
+			<option></option>
+			<option value="物流管理">物流管理</option>
+			<option value="汽车营销">汽车营销</option>
+			<option value="财务管理">财务管理</option>
+			<option value="旅游管理">旅游管理</option>
+			</select>			
+			</div>	
+
+			<select id="stuClass" class="a12_1_2" style="position:absolute;top:5px;left:510px;">
+			<option value="em"></option>
+			<option value="1">1班</option>
+			<option value="2">2班</option>
+			<option value="3">3班</option>
+			<option value="4">4班</option>
+			</select>
+			
+			<button class="a12_B" id="displaystu">查询</button>
+			</div>
+			
+			
+			<table border="2px" id="table_1" style="position:absolute;left:250px;top:80px;margin: 0px; padding: 0px;">
+			<thead>
+			<tr>
+			<td><input id="stuName" readonly="readonly" value="姓 名"></input></td>
+			<td><input id="TestCexam" readonly="readonly"value="语 文"></input></td>
+			<td><input id="TestMexam" readonly="readonly"value="数 学"></input></td>
+			<td><input id="TestEexam" readonly="readonly"value="英 语"></input></td>
+			</tr>
+			</thead>
+			<!-- <taboy border="2" id="table_1" style="position:absolute;left:250px; top:108.9px;margin: 0px; padding: 0px;"> -->
+			<tbody>
+			<!-- 
+			<tr>
+			<td><input id="stuName" readonly="readonly" value="司徒宫羽"></input></td>
+			<td><input id="TestCexam" readonly="readonly"value="50"></input></td>
+			<td><input id="TestMexam" readonly="readonly"value="100"></input></td>
+			<td><input id="TestEexam" readonly="readonly"value="67"></input></td>
+			</tr>
+			 -->
+			</tbody>
+			</table>
+			</div>
+			</li>
+	    </ul>
+	    <!-- 分数查询板块 -->
+	    
+	     
+	    <ul id="Intr_ul" style="display:none" name="介绍">	
+			<li class="a5_5">
+
+			
+			</li>
+	    </ul>
+        <ul id="Help_ul" style="display:none" name="鸣谢">	
+			<li class="a5_5">
+			
+			
+			</li>
+	    </ul>
+	    </div>
+	    </div>
+		<div class="a5_3"></div>
+	</div>
+	
+	
+	<div id="menu_ul">
+	<ul class="a1_1" id="Q_ul">  
+		<div><a>发布试题<div id="target" class="TreeArrowBottom"></div></a></div>
+        <li class="a2_1" value="R_Chinese"><a >语文</a></li>  
+        <li class="a2_1" value="R_Math"><a >数学</a></li> 
+        <li class="a3_2" value="R_English"><a >英语</a></li> 		
+    </ul> 
+	<ul class="a1_2" >      
+		<div><a>个人中心<div id="target" class="TreeArrowBottom"></div></a></div>
+        <!-- <li class="a2_1" ><a href="#" >个人资料</a></li>   -->
+        <li class="a2_1" id="account_li"><a >账号管理</a></li>         
+	    <li class="a3_2" id="number_li"><a >分数查询</a></li>   
+    </ul>
+	<ul class="a1_3" >  
+		<div><a>帮助说明<div id="target" class="TreeArrowBottom"></div></a></div>
+        <li class="a2_1" id="Introduction"><a >介绍</a></li>  
+        <li class="a3_1" id="Thanks"><a >鸣谢</a></li>  
+    </ul>  	
+    </div>	
+	
+	     <div id="myTime">    
+			<div id="hm"></div>    
+			<div id="other"></div>
+			</div>  
+  </body>  
+</html>  

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.xi2.q_bank.dao.UserDao">
+	<!-- 与Dao接口中的方法名一致 -->
+	<!-- 参数类型 -->
+	<select id="findByName"  
+	 		parameterType="string"    
+	 		resultType="com.xi2.q_bank.entity.User"><!-- 返回类型 -->
+			select * from cn_user where cn_user_sno=#{sno}
+	</select>
+	<select id="findNumById"  
+	 		parameterType="string"    
+	 		resultType="com.xi2.q_bank.entity.Result"><!-- 返回类型 -->
+			select * from cn_Result where cn_user_id=#{userId}
+	</select>
+	
+	<select id="findUserById"  
+	 		parameterType="string"    
+	 		resultType="com.xi2.q_bank.entity.User"><!-- 返回类型 -->
+			select * from cn_user where cn_user_id=#{userId}
+	</select>
+	
+	<insert id="save" 
+			parameterType="com.xi2.q_bank.entity.User">
+			insert into cn_user(
+					cn_user_id,
+					cn_user_name,
+					cn_user_sno,
+					cn_user_password) 
+					values(#{cn_user_id},
+					#{cn_user_name},
+					#{cn_user_sno},
+					#{cn_user_password})
+	</insert>
+	
+	<insert id="saveNumber" 
+			parameterType="com.xi2.q_bank.entity.Result">
+			insert into cn_Result(
+					cn_user_id,
+					cn_user_name,
+					R_Chinese,
+					R_English,
+					R_Math) 
+					values(#{cn_user_id},
+					#{cn_user_name},
+					#{R_Chinese},
+					#{R_English},
+					#{R_Math})
+	</insert>
+	
+	<update id="createResult" parameterType="map">
+		update cn_Result 
+		set ${type}=#{num}
+		where cn_user_id=#{userId}
+	</update>
+	
+	<update id="updataPwd" parameterType="map">
+		update cn_user 
+		set cn_user_password=#{pwd}
+		where cn_user_id=#{userId}
+	</update>
+	
+	<update id="updataName" parameterType="map">
+		update cn_user 
+		set cn_user_name=#{Rname}
+		where cn_user_id=#{userId}
+	</update>
+</mapper>
+
+
+
+
+
+
+

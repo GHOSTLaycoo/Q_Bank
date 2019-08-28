@@ -1,0 +1,25 @@
+/*css的标签选择器*/234
+li{
+	font-size: 32px;
+	width:250px;
+	padding-bottom: 5px;
+	list-style: none; /*使li前面的小圆点消失*/
+	/*text-align:center;*/
+	padding-left:50px;
+	/*margin-left: 25px; *//*让子菜单向右移动一段距离，达到缩进的效果*/
+	display: block;   /*让所有的子菜单都显示*/
+}
+
+a{
+	text-decoration: none;/*去掉下划线*/
+	cursor:default;
+	font-size: 32px;
+	/*font-family:lucida grande;*/
+	font-family:Simsun;
+	}
+	/* -webkit-linear-gradient(top,rgba(65,181,230,0.8),rgba(65,181,230,0.5));*/
+
+li.checked{
+	color:#FFF;
+	background:rgba(51,63,30,0.9);
+}

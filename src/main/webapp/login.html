@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/main.css"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/basevalue.js"></script>
+<script type="text/javascript" src="js/cookie_util.js"></script>
+<script type="text/javascript" src="js/login.js" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function(){
+		//重置placeholder
+		$("input").focus(function(){
+			$("#usernum").attr("placeholder","学号");
+			$("#password").attr("placeholder","密码");
+		  });
+		//登陆
+		$("#submit").click(userLogin);
+		
+	});
+</script>
+</head>
+<body>
+<div class="dowebok">
+
+         <div class="logo"></div>
+
+         <div class="form-item">
+
+             <input id="usernum" type="text" autocomplete="off" placeholder="学号">
+	
+         </div>
+
+         <div class="form-item">
+
+             <input id="password" type="password" autocomplete="off" placeholder="密码">
+				
+         </div>
+
+         <div class="form-item">
+		 
+		          <button id="submit">登录</button></div>
+
+         <div class="reg-bar">
+
+             <a class="reg" href="regist.html">立即注册</a>
+
+             <a class="forget" href="javascript:">忘记密码</a>
+
+         </div>
+         
+        
+
+     </div>
+</body>
+</html>

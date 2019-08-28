@@ -1,0 +1,99 @@
+* {     
+        
+         margin: 0; padding: 0; }
+
+         html { height: 100%; }
+
+         body { height: 100%; background: #fff url(../img/backgroud_login.png) 50% 50% no-repeat; background-size: cover;}
+
+         .dowebok { position: absolute; left: 50%; top: 50%; width: 430px; height: 550px; margin: -300px 0 0 -215px; border: 1px solid #fff; border-radius: 20px; overflow: hidden;background-color: rgba(29,73,96,0.8);}
+
+         .logo { width: 350px; height: 154px; margin: 20px auto 50px; 
+
+
+          background: url(../img/log_1.png);background-size: cover;-moz-background-size: cover;}
+
+         
+
+         .form-item { position: relative; width: 360px; margin: 0 auto; padding-bottom: 30px;}
+
+         .form-item input { width: 340px; height: 50px; padding-left: 20px; border: 1px solid #fff; border-radius: 25px; font-size: 18px; color: #fff; background-color: transparent; outline: none;}
+
+         .form-item button { width: 360px; height: 50px; border: 0; border-radius: 25px; font-size: 18px; color: #1f6f4a; outline: none; cursor: pointer; background-color: #fff; }
+
+         .form-item button:hover { filter:alpha(opacity=60); opacity:0.6; }
+		 
+		 .form-item2_1 {position:relative; left:20px; width: 180px; float: left; padding-right: 20px; padding-bottom: 30px;}
+		 
+		 .form-item2_1 button { width: 180px; height: 50px; border: 0; border-radius: 25px; font-size: 18px; color: #1f6f4a; outline: none; cursor: pointer; background-color: #fff; }
+		 
+		 .form-item2_1 button:hover { filter:alpha(opacity=60); opacity:0.6; }
+		 
+		 .form-item2_2 {position:relative; right:20px; width: 180px; float: right; padding-left: 20px; padding-bottom: 30px;}
+		 
+		 .form-item2_2 button { width: 180px; height: 50px; border: 0; border-radius: 25px; font-size: 18px; color: #1f6f4a; outline: none; cursor: pointer; background-color: #fff; }
+		 
+		 .form-item2_2 button:hover { filter:alpha(opacity=60); opacity:0.6; }
+		 
+	
+		 
+		 
+         
+         #username { background: url(img/XXX.png) 20px 14px no-repeat; }
+
+         #password { background: url(img/XXX.png) 23px 11px no-repeat; }
+
+         .tip { display: none; position: absolute; left: 20px; top: 52px; font-size: 14px; color: #000; }
+
+         .reg-bar { width: 360px; margin: 20px auto 0; font-size: 14px; overflow: hidden;}
+
+         .reg-bar a { color: #fff; text-decoration: none; }
+
+         .reg-bar a:hover { text-decoration: underline; }
+
+         .reg-bar .reg { float: left; }
+
+         .reg-bar .forget { float: right; }
+
+         .dowebok ::-webkit-input-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+
+         .dowebok :-moz-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+
+         .dowebok ::-moz-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+
+         .dowebok :-ms-input-placeholder { font-size: 18px; line-height: 1.4; color: #fff;}
+
+  
+         .reg_main {border: 5px solid;width: 100%; margin: auto;height: 100%;position: fixed;left: 0px;top: 0px;background: rgb(0,0,0,0.5);overflow: auto;text-align: center;display: none;}
+	     
+		 .reg_background{background: rgb(255,255,255,1);width: 250px;height: 150px;margin: auto;margin-top: 20%;border-radius: 5px;}
+         
+		 .reg_a{height: 110px;border-bottom: 1px solid #CCCCCC;}
+		 
+		 .reg_display_1{font-size: 0.9rem;padding-top: 30px;}
+         
+		 .reg_display_2{font-size: 0.8rem;margin-top: 15px;}
+		 
+		 .reg_yes{float: left;width: 49%;height: 39px;border-right: 1px solid #CCCCCC;line-height: 39px;font-size: 1rem;}
+         
+		 .reg_no{float: right;width: 50%;height: 39px;line-height: 39px;font-size: 1rem;}
+  
+  
+  
+  
+  
+  
+
+         @media screen and (max-width: 500px) {
+
+             * { box-sizing: border-box; }
+
+             .dowebok { position: static; width: auto; height: auto; margin: 0 30px; border: 0; border-radius: 0; }
+
+             .logo { margin: 50px auto; }
+
+             .form-item { width: auto; }
+
+             .form-item input, .form-item button, .reg-bar { width: 100%; }
+
+         }

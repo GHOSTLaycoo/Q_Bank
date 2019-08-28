@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.xi2.q_bank.dao.AdminDao">
+	<insert id="saveQuestion" 
+			parameterType="com.xi2.q_bank.entity.Title">
+			insert into cn_Title(
+					Q_Id,
+					Q_title,
+					Q_A,
+					Q_B,
+					Q_C,
+					Q_D,
+					Q_Answer,
+					Q_type) 
+					values(
+					#{Q_Id},
+					#{Q_title},
+					#{Q_A},
+					#{Q_B},
+					#{Q_C},
+					#{Q_D},
+					#{Q_Answer},
+					#{Q_type})
+	</insert>
+	<select id="findAllRe" parameterType="String" resultType="com.xi2.q_bank.entity.Result">
+		select * from cn_Result where cn_user_id=#{userId}
+	</select>
+	
+	<select id="findAllM2" parameterType="map" resultType="com.xi2.q_bank.entity.Message_2">
+		select * from message_2 
+		<choose>
+			<when test="sp!='' and ss!='' and sc!='' and sf!=''"><!-- 1234 -->
+				where M_stuProfession=#{sp} and M_jie=#{ss} and M_ban=#{sc} and M_stufaculty=#{sf}
+			</when>
+			<when test="sp!='' and sf!='' and sc!='' and ss==''"><!-- 234 -->
+				where M_stuProfession=#{sp} and M_stufaculty=#{sf} and M_ban=#{sc}
+			</when>
+			<when test="ss!='' and sf!='' and sp!='' and sc==''"><!-- 123 -->
+				where M_jie=#{ss} and M_stufaculty=#{sf} and M_stuProfession=#{sp}
+			</when>
+			<when test="ss!='' and sf!='' and sp=='' and sc!=''"><!-- 124 -->
+				where M_jie=#{ss} and M_stufaculty=#{sf} and M_ban=#{sc}
+			</when>
+			<when test="ss!='' and sf!='' and sp=='' and sc==''"><!-- 12 -->
+				where M_jie=#{ss} and M_stufaculty=#{sf}
+			</when>
+			<when test="ss!='' and sf=='' and sp=='' and sc!=''"><!-- 14 -->
+				where M_jie=#{ss} and M_ban=#{sc}
+			</when>
+			<when test="ss=='' and sf!='' and sp!='' and sc==''"><!-- 23 -->
+				where M_stufaculty=#{sf} and M_stuProfession=#{sp}
+			</when>
+			<when test="ss=='' and sf!='' and sp=='' and sc!=''"><!-- 24 -->
+				where M_stufaculty=#{sf} and M_ban=#{sc}
+			</when>
+			<when test="ss!='' and sf=='' and sp=='' and sc==''"><!-- 1 -->
+				where M_jie=#{ss}
+			</when>
+			<when test="ss=='' and sf!='' and sp=='' and sc==''"><!-- 2 -->
+				where M_stufaculty=#{sf}
+			</when>
+			<when test="ss=='' and sf=='' and sp=='' and sc!=''"><!-- 4 -->
+				where M_ban=#{sc}
+			</when>
+		</choose>
+		
+	</select>
+</mapper>
+
+
+
+
+
+
+

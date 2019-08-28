@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.xi2.q_bank.dao.MessageDao">
+	<insert id="saveM1" 
+			parameterType="com.xi2.q_bank.entity.Message_1">
+			insert into message_1(
+					cn_user_id,
+					M_nc,
+					M_sx,
+					M_sr,
+					M_xz,
+					M_xx,
+					M_zy,
+					M_mail,
+					M_phone,
+					M_Note) 
+					values(
+					#{cn_user_id},
+					#{M_nc,jdbcType=VARCHAR},
+					#{M_sx,jdbcType=VARCHAR},
+					#{M_sr,jdbcType=VARCHAR},
+					#{M_xz,jdbcType=VARCHAR},
+					#{M_xx,jdbcType=VARCHAR},
+					#{M_zy,jdbcType=VARCHAR},
+					#{M_mail,jdbcType=VARCHAR},
+					#{M_phone,jdbcType=VARCHAR},
+					#{M_Note,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="updataM1" parameterType="com.xi2.q_bank.entity.Message_1">
+		update message_1 
+		set M_nc=#{M_nc},M_sx=#{M_sx},M_sr=#{M_sr},M_xz=#{M_xz},M_xx=#{M_xx},M_zy=#{M_zy},M_mail=#{M_mail},
+		M_phone=#{M_phone},M_Note=#{M_Note} 
+		where cn_user_id=#{cn_user_id}
+	</update>
+	
+	
+	<insert id="saveM2" 
+			parameterType="com.xi2.q_bank.entity.Message_2">
+			insert into message_2(
+					cn_user_id,
+					M_Rschool,
+					M_stufaculty,
+					M_stuProfession,
+					M_jie,
+					M_ban) 
+					values(
+					#{cn_user_id},
+					#{M_Rschool,jdbcType=VARCHAR},
+					#{M_stufaculty,jdbcType=VARCHAR},
+					#{M_stuProfession,jdbcType=VARCHAR},
+					#{M_jie,jdbcType=VARCHAR},
+					#{M_ban,jdbcType=VARCHAR})
+	</insert>
+	
+	<update id="updataM2" parameterType="com.xi2.q_bank.entity.Message_2">
+		update message_2 
+		set M_Rschool=#{M_Rschool},M_stufaculty=#{M_stufaculty},
+		M_stuProfession=#{M_stuProfession},M_jie=#{M_jie},M_ban=#{M_ban}
+		where cn_user_id=#{cn_user_id}
+	</update>
+	
+	
+	
+	<select id="loadM1" parameterType="string" resultType="com.xi2.q_bank.entity.Message_1">
+		select * from message_1 where cn_user_id=#{userId}
+	</select>
+	
+	<select id="loadM2" parameterType="string" resultType="com.xi2.q_bank.entity.Message_2">
+		select * from message_2 where cn_user_id=#{userId}
+	</select>
+</mapper>
+
+
+
+
+
+
+
